@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="./assets/favicon.ico" />
+    <link rel="stylesheet" href="./sass/main.css">
+
+    <title>Tombola</title>
+</head>
+<body>
+    <header id="header">
+        <h1 id="title">Tombola de l'APE</h1>
+    </header>
+
+    <main>
+        <img src="./assets/logo.jpg" class="bg" alt="logo APE">
+        <div id="start">
+            <div class="grid-params">
+                <label for="grid-params" class="grid-params-label">Nombre de numéros de la grille</label>
+                <input type="number" name="grid-params" id="grid-params" class="grid-params-input" min="1">
+            </div>
+
+            <div class="grid-params">
+                <label for="gift-params" class="grid-params-label">Nombre de lots mis en jeu</label>
+                <input type="number" name="gift-params" id="gift-params" class="grid-params-input" min="1">
+            </div>
+            
+            <button id="start-btn" onclick="init()">Créer la grille</button>
+        </div>
+
+        <div id="container">
+            <section id="grid-container">
+                <h2 id="grid-title">Grille</h2>
+                <div id="grid"></div>
+            </section>
+
+            <section id="draw">
+                <h2 id="draw-title">Tirage</h2>
+
+                <div id="draw-choices">
+                    <h3 id="choices-title">Numéros choisis</h2>
+                    <div id="choices"></div>
+                </div>
+
+                <button id="draw-btn" onclick="draw()">Lancer le tirage</button>
+
+                <div id="drawing">0</div>
+
+                <div id="draw-results"></div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <p class="footer-text">#PFDW13</p>
+    </footer>
+
+    <script src="index.js" defer></script>
+</body>
+</html>

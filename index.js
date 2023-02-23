@@ -1,11 +1,24 @@
+
+
 //game init
 let choices = [];
 let results = [];
-let gridMaxNb = 0;
+let gridMaxNb;
 let giftNb;
 
 
 function init() {
+    gridMaxNb = parseInt(document.getElementById("grid-params").value);
+    giftNb = parseInt(document.getElementById("gift-params").value);
+
+    if(gridMaxNb == 0 || gridMaxNb == "") {
+        alert("Veuillez saisir la nombre de numéros de la grille !");
+        return;
+    } else if(giftNb == 0 || giftNb == "") {
+        alert("Veuillez saisir le nombre de lots mis en jeu !");
+        return;
+    }
+
     document.getElementById("start").style.display = "none";
     i = 1;
     document.getElementById("grid-title").style.visibility = "visible";
@@ -54,15 +67,16 @@ rep = 0;
 itr = 30;
 
 function draw() {
-    gridMaxNb = parseInt(document.getElementById("grid-params").value);
-    giftNb = parseInt(document.getElementById("gift-params").value);
-    drawingViewer = document.getElementById("drawing");
-    drawingViewer.style.visibility = "visible";
-
-    if(giftNb === results.length) {
-        alert("Le nombre de maximum de tirage atteint !")
+    if(choices.length == 0) {
+        alert("Aucun numéro n'a été choisi");
+        return;
+    } else if(giftNb === results.length || results.length >= choices.length) {
+        alert("Le nombre de maximum de tirage est atteint !");
         return;
     }
+
+    drawingViewer = document.getElementById("drawing");
+    drawingViewer.style.visibility = "visible";
 
     tx = setTimeout("draw()", 40);
     rep+=1;

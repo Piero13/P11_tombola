@@ -25,6 +25,7 @@ function init() {
     i = 1;
     document.getElementById("grid-title").style.visibility = "visible";
     document.getElementById("draw").style.visibility = "visible";
+    document.getElementById("drawing").style.visibility = "visible";
 
     createGrid();
 }
@@ -108,7 +109,7 @@ function draw() {
         drawnResultDiv = document.createElement("div");
         drawnResultDiv.className = "drawn-results-div";
         drawnResultDiv.setAttribute("id", "gift" + k)
-        document.getElementById("draw-results").appendChild(drawnResultDiv);
+        document.getElementById("results").appendChild(drawnResultDiv);
 
         //on affiche le label du tirage
         drawnResultLbl = document.createElement("p");

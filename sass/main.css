@@ -167,6 +167,7 @@ main {
 
 #draw-results {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .drawn-results-div {

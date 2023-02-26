@@ -99,6 +99,7 @@ main{
     display: flex;
     justify-content: space-between;
 }
+
 //grid
 #grid-container {
     position: relative;
@@ -177,6 +178,17 @@ main{
     flex-direction: column;
     align-items: center;
     width: 100%;
+}
+
+#draw-results {
+    display: flex;
+}
+
+.drawn-results-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px;
 }
 
 #choices-title {

@@ -5,6 +5,8 @@ let choices = [];
 let results = [];
 let gridMaxNb;
 let giftNb;
+let choicesLength;
+let resultsLength;
 
 
 function init() {
@@ -32,7 +34,7 @@ function createGrid() {
     gridMaxNb = parseInt(document.getElementById("grid-params").value);
     t = setTimeout("createGrid()", 50);
     gridBtn = document.createElement("div");
-    gridBtn.className="btn";
+    gridBtn.className="btn grid-btn";
     gridBtn.innerHTML = i;
     gridBtn.setAttribute("id", i);
     gridBtn.setAttribute("onclick", "addChoice(this)")
@@ -64,50 +66,74 @@ function addChoice(choosen) {
 
 //draw
 rep = 0;
-itr = 30;
+itr = 50;
+k = 0;
+
+
 
 function draw() {
-    if(choices.length == 0) {
-        alert("Aucun numéro n'a été choisi");
+    console.log(choices);
+    console.log(results);
+
+    choicesLength = choices.length;
+    resultsLength = results.length;
+
+    if(choicesLength == 0) {
+        alert("Aucun numéro n'est disponible pour le tirage");
         return;
-    } else if(giftNb === results.length || results.length >= choices.length) {
+    } else if(giftNb === resultsLength) {
         alert("Le nombre de maximum de tirage est atteint !");
         return;
+    }
+
+    for(i = 1; i < gridMaxNb + 1; i++) {
+        document.getElementById(i).removeAttribute("onclick");
     }
 
     drawingViewer = document.getElementById("drawing");
     drawingViewer.style.visibility = "visible";
 
-    tx = setTimeout("draw()", 40);
-    rep+=1;
+    tx = setTimeout("draw()", 60);
+    rep += 1;
     if(rep < itr) {
-        drawingViewer.innerHTML = Math.ceil(Math.random()*gridMaxNb);
+        drawingViewer.innerHTML = choices[Math.ceil(Math.random()*choicesLength) - 1];
     } else {
-        rep = 0;
+        k += 1;
         clearTimeout(tx);
         drawnNbr = parseInt(drawingViewer.innerHTML);
 
-        if(results.find(number => number === drawnNbr)) {
-            draw();
-        } else if(!choices.find(number => number === drawnNbr)) {
-            draw();
-        } else {
-            results.push(drawnNbr);
+        results.push(drawnNbr);
 
-            //on affiche le numéro tiré
-            drawResultBtn = document.createElement("div");
-            drawResultBtn.className = "btn addedNbr";
-            drawResultBtn.setAttribute("id", "res" + drawnNbr);
-            drawResultBtn.innerHTML = drawnNbr;
-            document.getElementById("draw-results").appendChild(drawResultBtn);
+        //on crée l'emplacement pour le tirage
+        drawnResultDiv = document.createElement("div");
+        drawnResultDiv.className = "drawn-results-div";
+        drawnResultDiv.setAttribute("id", "gift" + k)
+        document.getElementById("draw-results").appendChild(drawnResultDiv);
 
-            //on compare avec les numéros joués
-            if(choices.find(number => number === drawnNbr)) {
-                matchedNbr = document.getElementById("ch" + drawnNbr);
+        //on affiche le label du tirage
+        drawnResultLbl = document.createElement("p");
+        drawnResultLbl.className = "drawn-results-p";
+        drawnResultLbl.innerHTML = "n°" + k;
+        document.getElementById("gift" + k).appendChild(drawnResultLbl);
+
+        //on affiche le numéro tiré
+        drawResultBtn = document.createElement("div");
+        drawResultBtn.className = "btn addedNbr";
+        drawResultBtn.setAttribute("id", "res" + drawnNbr);
+        drawResultBtn.innerHTML = drawnNbr;
+        document.getElementById("gift" + k).appendChild(drawResultBtn);
+
+        //on compare avec les numéros joués
+        if(choices.find(number => number === drawnNbr)) {
+            matchedNbr = document.getElementById("ch" + drawnNbr);
                 matchedNbr.style.backgroundColor = "#C3D08B";
-            }
         }
 
+        indexToRemove = choices.findIndex((elt) => elt == drawnNbr);
+        choices.splice(indexToRemove, 1);
+        rep = 0;
+        
+        console.log(choices);
         console.log(results);
     }
 }

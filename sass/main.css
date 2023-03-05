@@ -86,7 +86,7 @@ main {
 }
 
 #container {
-  display: flex;
+  display: none;
   justify-content: space-between;
 }
 
@@ -97,10 +97,6 @@ main {
   align-items: center;
   width: 40%;
   margin-bottom: 50px;
-}
-
-#grid-title {
-  visibility: hidden;
 }
 
 #grid-title, #draw-title {
@@ -132,7 +128,6 @@ main {
 }
 
 #draw {
-  visibility: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -177,7 +172,7 @@ main {
   margin: 5px;
 }
 
-#choices-title {
+h3 {
   margin-bottom: 10px;
 }
 
@@ -190,7 +185,6 @@ main {
 }
 
 #drawing {
-  visibility: hidden;
   width: 120px;
   height: 120px;
   border-radius: 100px;

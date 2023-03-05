@@ -1,5 +1,3 @@
-
-
 //game init
 let choices = [];
 let results = [];
@@ -7,7 +5,6 @@ let gridMaxNb;
 let giftNb;
 let choicesLength;
 let resultsLength;
-
 
 function init() {
     gridMaxNb = parseInt(document.getElementById("grid-params").value);
@@ -23,9 +20,7 @@ function init() {
 
     document.getElementById("start").style.display = "none";
     i = 1;
-    document.getElementById("grid-title").style.visibility = "visible";
-    document.getElementById("draw").style.visibility = "visible";
-    document.getElementById("drawing").style.visibility = "visible";
+    document.getElementById("container").style.display = "flex";
 
     createGrid();
 }
@@ -50,7 +45,7 @@ function createGrid() {
     }
 }
 
-//add choice
+//choice adding
 function addChoice(choosen) {
     choosen.style.visibility = "hidden";
     nbr = choosen.textContent;
@@ -61,7 +56,6 @@ function addChoice(choosen) {
     document.getElementById("choices").appendChild(addedNbr);
     choices.push(parseInt(choosen.firstChild.nodeValue));
 
-    // console.log (choices[nbr]);
     console.log(choices);
 }
 
@@ -69,8 +63,6 @@ function addChoice(choosen) {
 rep = 0;
 itr = 50;
 k = 0;
-
-
 
 function draw() {
     console.log(choices);
